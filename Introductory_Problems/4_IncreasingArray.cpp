@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+#define int long long
 #define ll long long int
 #define vi vector<int>
 #define vll vector<long long int>
@@ -19,31 +19,24 @@ using namespace std;
 
 void solve()
 {
-    string dna;
-    cin>>dna;
-    int r=0;
-    int l=0;
-    int n=dna.size();
-    unordered_map<char,int>mp;
-    int maxLen=0;
-    while(r<n){
-        mp[dna[r]]++;
-        if(mp.size()>1){
-            mp[dna[l]]--;
-            if(mp[dna[l]]==0){
-                mp.erase(dna[l]);
-            }
-            l++;
-        }
-        if(mp.size()==1){
-            maxLen=max(maxLen,r-l+1);
-        }
-        r++;
+    int n;
+    cin>>n;
+    vector<int>arr;
+    for(int i=0;i<n;i++)
+    {
+        int ele;
+        cin>>ele;
+        arr.push_back(ele);
     }
-    cout<<maxLen<<endl;
-
+    int count=0;
+    for(int i=1;i<n;i++){
+        if(arr[i]<arr[i-1]){
+            count+=abs(arr[i-1]-arr[i]);
+            arr[i]=arr[i-1];
+        }
+    }
+    cout<<count<<endl;
 }
-
 int32_t main()
 {
     #ifndef ONLINE_JUDGE

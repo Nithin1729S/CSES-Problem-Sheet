@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+#define int long long 
 #define ll long long int
 #define vi vector<int>
 #define vll vector<long long int>
@@ -13,37 +13,30 @@ using namespace std;
 #define clr(x) memset(x,0,sizeof(x))
 #define sortUni(v) sort(all(v)), v.erase(unique(all(v)), v.end())
 #define fast_io ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define f0(i,n)  for(int i=0;i<(int)n;i++)
+#define f1(i,n)  for(int i=1;i<=(int)n;i++)
 #define test int t;cin>>t;while(t--)
 #define take(a,n) vi a(n); f0(i,n) cin >> a[i];
 #define give(a,n) f0(i,n){cout << a[i] << ' ';}cout << endl;
 
+
+int helper(int curr,int target,vector<int>&dp){
+    if(curr==target) return 1;
+    if(curr>target) return 0;
+    if(dp[curr]!=-1) return dp[curr];
+    int ways=0;
+    for(int i=1;i<=6;i++){
+        ways+=(helper(curr+i,target,dp)%MOD);
+    }
+    return dp[curr]=ways;
+}
 void solve()
 {
-    string dna;
-    cin>>dna;
-    int r=0;
-    int l=0;
-    int n=dna.size();
-    unordered_map<char,int>mp;
-    int maxLen=0;
-    while(r<n){
-        mp[dna[r]]++;
-        if(mp.size()>1){
-            mp[dna[l]]--;
-            if(mp[dna[l]]==0){
-                mp.erase(dna[l]);
-            }
-            l++;
-        }
-        if(mp.size()==1){
-            maxLen=max(maxLen,r-l+1);
-        }
-        r++;
-    }
-    cout<<maxLen<<endl;
-
+    int n;
+    cin>>n;
+    vector<int>dp(n+1,-1);
+    cout<<helper(0,n,dp)%MOD<<endl;
 }
-
 int32_t main()
 {
     #ifndef ONLINE_JUDGE
