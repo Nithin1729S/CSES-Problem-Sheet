@@ -20,30 +20,28 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin>>n;
-    vector<ll>arr;
-    for(int i=0;i<n;i++)
-    {
-        ll ele;
-        cin>>ele;
-        arr.push_back(ele);
-    }
-    stack<int>stk;
+    int n,m;
+    cin>>n>>m;
+
+    vector<int>prices;
+    vector<int>maxP;
+
     for(int i=0;i<n;i++){
-        while(!stk.empty() && arr[stk.top()]>=arr[i]){
-            stk.pop();
-        }
-        if(stk.empty()){
-            cout<<0<<" ";
-        }else{
-            cout<<stk.top()+1<<" ";
-        }
-        stk.push(i);
+        int ele;
+        cin>>ele;
+        prices.pb(ele);
     }
 
+    for(int i=0;i<m;i++){
+        int ele;
+        cin>>ele;
+        maxP.pb(ele);
+    }
 
+    sort(prices.begin(),prices.end());
     
+
+
 }
 int32_t main()
 {

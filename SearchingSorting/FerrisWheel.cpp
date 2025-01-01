@@ -20,30 +20,30 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin>>n;
-    vector<ll>arr;
+    int n,x;
+    cin>>n>>x;
+    vector<int>wt;
     for(int i=0;i<n;i++)
     {
-        ll ele;
+        int ele;
         cin>>ele;
-        arr.push_back(ele);
+        wt.push_back(ele);
     }
-    stack<int>stk;
-    for(int i=0;i<n;i++){
-        while(!stk.empty() && arr[stk.top()]>=arr[i]){
-            stk.pop();
-        }
-        if(stk.empty()){
-            cout<<0<<" ";
+    sort(wt.begin(),wt.end());
+    int i=0;
+    int j=n-1;
+    int count=0;
+    while(i<=j){
+        if(wt[i]+wt[j]<=x){
+            count++;
+            i++;
+            j--;
         }else{
-            cout<<stk.top()+1<<" ";
+            j--;
+            count++;
         }
-        stk.push(i);
     }
-
-
-    
+    cout<<count<<endl;
 }
 int32_t main()
 {

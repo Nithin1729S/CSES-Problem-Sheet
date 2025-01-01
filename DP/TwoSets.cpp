@@ -20,29 +20,6 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin>>n;
-    vector<ll>arr;
-    for(int i=0;i<n;i++)
-    {
-        ll ele;
-        cin>>ele;
-        arr.push_back(ele);
-    }
-    stack<int>stk;
-    for(int i=0;i<n;i++){
-        while(!stk.empty() && arr[stk.top()]>=arr[i]){
-            stk.pop();
-        }
-        if(stk.empty()){
-            cout<<0<<" ";
-        }else{
-            cout<<stk.top()+1<<" ";
-        }
-        stk.push(i);
-    }
-
-
     
 }
 int32_t main()
