@@ -22,14 +22,13 @@ void solve()
 {
     int n,m;
     cin>>n>>m;
-
-    vector<int>prices;
     vector<int>maxP;
+    multiset<int,greater<int>>tickets;
 
     for(int i=0;i<n;i++){
         int ele;
         cin>>ele;
-        prices.pb(ele);
+        tickets.insert(ele);
     }
 
     for(int i=0;i<m;i++){
@@ -38,8 +37,20 @@ void solve()
         maxP.pb(ele);
     }
 
-    sort(prices.begin(),prices.end());
-    
+
+    vector<int>res;
+    for(auto&it:maxP){
+        auto ele=tickets.lower_bound(it);
+        if(ele==tickets.end()){
+            cout<<-1<<endl;
+        }else{
+            cout<<*ele<<endl;
+            tickets.erase(ele);
+        }
+
+    }
+    return ;
+
 
 
 }
