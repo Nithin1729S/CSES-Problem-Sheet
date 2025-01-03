@@ -22,26 +22,23 @@ void solve()
 {
     int n;
     cin>>n;
-    vector<pair<int,int>>nums;
+    vector<int>nums(n);
     for(int i=0;i<n;i++){
-        int ele;
-        cin>>ele;
-        nums.push_back({ele,i});
+        cin>>nums[i];
     }
-    sort(nums.begin(),nums.end(),[](pair<int,int>&a,pair<int,int>&b){
-        return a.first<b.first;
-    });
-
-
-    int rounds = 1; 
-    for (int i = 1; i < n; i++) {
-        if (nums[i].second < nums[i - 1].second) {
-            rounds++;
+    map<int,int>mp;
+    int l=0,r=0;
+    int maxi=0;
+    while(r<n){
+        while (mp[nums[r]] > 0) {
+            mp[nums[l]]--;
+            l++;
         }
+        mp[nums[r]]++;
+        maxi=max(maxi,r-l+1);   
+        r++;
     }
-    cout<<rounds<<endl;
-
-    
+    cout<<maxi<<endl;
 }
 int32_t main()
 {
